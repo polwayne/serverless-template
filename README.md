@@ -19,7 +19,7 @@ apiGateway:
 
 ## Deploy
 
-In order to deploy the you endpoint simply run
+In order to deploy simply run
 
 ```bash
 serverless deploy
