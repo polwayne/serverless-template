@@ -5,7 +5,8 @@ pipeline {
 		stage('Unit test') {
 			steps {				
 				nodejs(nodeJSInstallationName: 'nodejs') {
-                    sh 'serverless --help' // to ensure it is installed
+                    sh 'npm install' 
+					sh 'npm test' 
                 }
 			}
 		}			
@@ -21,6 +22,15 @@ pipeline {
 
 		stage('Deploy feature branch') {
 			when {branch "feature/*"}
+			steps {
+				nodejs(nodeJSInstallationName: 'nodejs') {
+						sh 'serverless deploy --stage dev'
+				}
+			}
+		}
+
+		stage('Deploy release branch') {
+			when {branch "release/*"}
 			steps {
 				nodejs(nodeJSInstallationName: 'nodejs') {
 						sh 'serverless deploy --stage int'
