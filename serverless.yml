@@ -22,9 +22,9 @@ provider:
   runtime: nodejs6.10
   apiGateway:
     restApiId:
-      'Fn::ImportValue': apiGateway-restApiId
+      'Fn::ImportValue': apiGateway-restApiId-${opt:stage, self:provider.stage}
     restApiRootResourceId:
-      'Fn::ImportValue': apiGateway-rootResourceId
+      'Fn::ImportValue': apiGateway-rootResourceId-${opt:stage, self:provider.stage}
 
 # you can overwrite defaults here
 #  stage: dev
